@@ -1,0 +1,107 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": [
+				"sns:CreateTopic",
+				"sns:Subscribe",
+				"sns:Publish",
+				"sns:DeleteTopic",
+				"sns:SetTopicAttributes",
+				"sns:GetTopicAttributes",
+				"sns:ListTagsForResource"
+			],
+			"Resource": "arn:aws:sns:us-west-2:058264465999:ec2-restart-notifications"
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"iam:CreateRole",
+				"iam:DeleteRole",
+				"iam:PassRole",
+				"iam:AttachRolePolicy",
+				"iam:DetachRolePolicy",
+				"iam:CreatePolicy",
+				"iam:DeletePolicy",
+				"iam:GetRole",
+				"iam:ListRolePolicies",
+				"iam:GetPolicy",
+				"iam:ListAttachedRolePolicies",
+				"iam:GetPolicyVersion",
+				"iam:ListInstanceProfilesForRole",
+				"iam:ListPolicyVersions"
+			],
+			"Resource": [
+				"arn:aws:iam::058264465999:role/lambda_ec2_restart_role",
+				"arn:aws:iam::058264465999:policy/lambda_ec2_sns_policy"
+			]
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"ec2:RunInstances",
+				"ec2:TerminateInstances",
+				"ec2:CreateTags",
+				"ec2:DeleteTags",
+				"ec2:DescribeSecurityGroups",
+				"ec2:AuthorizeSecurityGroupIngress",
+				"ec2:AuthorizeSecurityGroupEgress",
+				"ec2:DescribeSubnets",
+				"ec2:DescribeVolumes",
+				"ec2:DescribeImages",
+                "ec2:ModifyNetworkInterfaceAttribute"
+			],
+			"Resource": [
+				"arn:aws:ec2:us-west-2:058264465999:instance/*",
+				"arn:aws:ec2:us-west-2:058264465999:key-pair/AWS_key",
+				"arn:aws:ec2:us-west-2:058264465999:network-interface/*",
+				"arn:aws:ec2:us-west-2:058264465999:security-group/sg-0babcc696de95e3ac",
+                "arn:aws:ec2:us-west-2:058264465999:security-group/sg-03cd5afe567331764",
+				"arn:aws:ec2:us-west-2:058264465999:subnet/*",
+				"arn:aws:ec2:us-west-2:058264465999:volume/*",
+				"arn:aws:ec2:us-west-2::image/*"
+			]
+		},
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeInstances",
+                "ec2:DescribeInstanceStatus",
+                "ec2:DescribeInstanceAttribute",
+                "ec2:DescribeInstanceTypes",
+                "ec2:DescribeTags",
+                "ec2:DescribeVolumes",
+                "ec2:DescribeImages",
+                "ec2:DescribeInstanceCreditSpecifications"
+            ],
+            "Resource": "*"
+        },
+		{
+			"Effect": "Allow",
+			"Action": [
+				"lambda:CreateFunction",
+				"lambda:DeleteFunction",
+				"lambda:InvokeFunction",
+                "lambda:GetFunction",
+				"lambda:GetFunctionConfiguration",
+                "lambda:ListVersionsByFunction",
+                "lambda:GetFunctionCodeSigningConfig",
+				"lambda:UpdateFunctionCode",
+				"lambda:UpdateFunctionConfiguration",
+				"lambda:AddPermission",
+				"lambda:RemovePermission"
+			],
+			"Resource": "arn:aws:lambda:us-west-2:058264465999:function:RestartEC2Instance"
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"logs:CreateLogGroup",
+				"logs:CreateLogStream",
+				"logs:PutLogEvents"
+			],
+			"Resource": "arn:aws:logs:us-west-2:058264465999:*"
+		}
+	]
+}

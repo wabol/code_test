@@ -1,0 +1,6 @@
+.devcontainer/
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate.backup
+terraform/terraform.tfstate
+.DS_Store
