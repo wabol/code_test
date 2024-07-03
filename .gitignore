@@ -3,4 +3,5 @@ terraform/.terraform/
 terraform/.terraform.lock.hcl
 terraform/terraform.tfstate.backup
 terraform/terraform.tfstate
+terraform/lambda_function.zip
 .DS_Store

@@ -1,0 +1,17 @@
+# Sumo Logic Querey
+_sourceCategory=log/source 
+| parse "response_time=*ms" as response_time 
+| where _raw contains "/api/data" 
+| where response_time > 3000
+
+
+
+# Another way 
+
+_sourceCategory=log/source
+| parse "response_time=*ms" as response_time
+| where _raw contains "/api/data"
+| where response_time > 3000
+| timeslice 10m
+| count by _timeslice
+| where _count > 5
